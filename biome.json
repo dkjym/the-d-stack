@@ -8,7 +8,7 @@
     "rules": {
       "recommended": true
     },
-    "ignore": ["node_modules"]
+    "ignore": ["node_modules", "dist", "build"]
   },
   "formatter": {
     "enabled": true,

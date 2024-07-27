@@ -10,4 +10,5 @@ export default defineConfig({
     port: 8080,
   },
   plugins: [remixCloudflareDevProxy(), remix(), tsconfigPaths()],
+  clearScreen: false,
 });

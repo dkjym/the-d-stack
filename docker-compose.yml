@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:15.6
+    container_name: postgres
+    ports:
+      - 4545:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=dstack
+      - POSTGRES_PASSWORD=password
+volumes:
+  db:
