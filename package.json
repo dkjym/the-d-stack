@@ -1,55 +1,32 @@
 {
   "name": "the-d-stack",
   "private": true,
-  "sideEffects": false,
-  "type": "module",
-  "scripts": {
-    "build": "remix vite:build",
-    "deploy": "wrangler pages deploy ./build/client",
-    "dev": "remix vite:dev",
-    "start": "wrangler pages dev ./build/client",
-    "typecheck": "tsc",
-    "typegen": "wrangler types",
-    "lint": "biome lint . && biome check .",
-    "lint:fix": "biome check --apply .",
-    "format": "biome format .",
-    "format:fix": "biome format --write ."
+  "workspaces": {
+    "packages": ["apps/*", "packages/*"]
   },
-  "dependencies": {
-    "@conform-to/react": "1.1.5",
-    "@conform-to/zod": "1.1.5",
-    "@remix-run/cloudflare": "2.10.3",
-    "@remix-run/cloudflare-pages": "2.10.3",
-    "@remix-run/react": "2.10.3",
-    "class-variance-authority": "0.7.0",
-    "clsx": "2.1.1",
-    "isbot": "5.1.13",
-    "react": "19.0.0-canary-fd0da3eef-20240404",
-    "react-aria-components": "1.3.1",
-    "react-dom": "19.0.0-canary-fd0da3eef-20240404",
-    "tailwind-merge": "2.4.0",
-    "zod": "3.23.8"
+  "scripts": {
+    "build": "turbo build",
+    "deploy": "turbo deploy",
+    "dev": "turbo dev",
+    "start": "turbo start",
+    "typecheck": "turbo typecheck",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "format": "turbo format",
+    "format:fix": "turbo format:fix"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
-    "@cloudflare/workers-types": "4.20240403.0",
-    "@remix-run/dev": "2.10.3",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
-    "postcss": "8.4.40",
-    "tailwindcss": "3.4.7",
-    "tailwindcss-animate": "1.0.7",
-    "typescript": "5.4.3",
-    "vite": "5.3.5",
-    "vite-tsconfig-paths": "4.3.2",
-    "wrangler": "3.67.1"
+    "turbo": "2.0.9",
+    "typescript": "5.5.4"
   },
+  "trustedDependencies": ["@biomejs/biome"],
   "overrides": {
     "react": "19.0.0-canary-fd0da3eef-20240404",
     "react-dom": "19.0.0-canary-fd0da3eef-20240404"
   },
   "engines": {
     "node": ">=20.11.1"
-  }
+  },
+  "packageManager": "bun@1.1.21"
 }

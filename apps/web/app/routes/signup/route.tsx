@@ -1,10 +1,20 @@
 import { getInputProps, useForm } from "@conform-to/react";
 import { getZodConstraint, parseWithZod } from "@conform-to/zod";
 import { type ActionFunctionArgs, redirect } from "@remix-run/cloudflare";
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { client } from "~/api";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { SignupSchema } from "~/routes/signup/schema";
+
+export async function loader() {
+  const res = await client.users.$get({ query: {} });
+  if (res.ok) {
+    const data = await res.json();
+    return { users: data.users };
+  }
+  return { users: [] };
+}
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -18,6 +28,10 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Page() {
+  const data = useLoaderData<typeof loader>();
+
+  console.log(data.users);
+
   const lastResult = useActionData<typeof action>();
 
   const [form, fields] = useForm({
